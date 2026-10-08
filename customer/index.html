@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tesla Asset Markets</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="nav">
+  <a class="logo" href="#home">TESLA</a>
+  <nav><a href="#vehicles">Vehicles</a><a href="#self-driving">Self-Driving</a><a href="#energy">Energy</a><a href="#markets">Markets</a><a href="#leadership">Leadership</a></nav>
+  <div class="nav-actions"><button class="ghost" id="loginOpen">Sign in</button><button class="blue" id="registerOpen">Create account</button><button class="menu" id="menuOpen">Menu</button></div>
+</header>
+
+<aside class="drawer" id="drawer"><button id="drawerClose">×</button><a href="#vehicles">Vehicles</a><a href="#self-driving">Self-Driving</a><a href="#energy">Energy</a><a href="#markets">Markets</a><a href="#leadership">Leadership</a><button class="blue" id="drawerLogin">Sign in</button></aside>
+
+<main id="home">
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div><div class="hero-shade"></div>
+  <div class="hero-top"><span class="hero-label">MODEL Y</span><span class="hero-menu">Premium electric mobility</span></div>
+  <div class="hero-center"><h1>Model Y</h1><a href="#markets">1.99% APR Available</a><div><button class="blue large" id="heroOrder">Order Now</button><button class="white large" id="heroLearn">Learn More</button></div></div>
+  <div class="dots" id="heroDots" aria-label="Hero photos"><button class="dot active" data-slide="0" aria-label="Photo 1"></button><button class="dot" data-slide="1" aria-label="Photo 2"></button><button class="dot" data-slide="2" aria-label="Photo 3"></button></div>
+</section>
+
+<section class="intro"><p class="eyebrow">THE TECHNOLOGY</p><h2>Designed for a safer, smarter future.</h2><p>Explore vehicles, energy technology and the asset market from one clean dashboard.</p></section>
+
+<section class="self" id="self-driving">
+  <div class="copy"><p class="eyebrow">FULL SELF-DRIVING</p><h2>A new way to experience the road.</h2><p>Watch the self-driving footage you supplied and explore the technology behind the experience.</p><button class="blue" id="watchVideo">Watch Video</button></div>
+  <div class="video-wrap"><video controls muted playsinline loop preload="metadata"><source src="../assets/self-drive.mp4" type="video/mp4"></video></div>
+</section>
+
+<section class="section" id="vehicles"><div class="section-title"><div><p class="eyebrow">VEHICLES</p><h2>Explore our vehicles.</h2></div><button class="outline" id="vehicleOrder">Order a vehicle</button></div><div class="vehicle-grid" id="vehicleGrid"></div></section>
+
+<section class="section" id="energy"><div class="section-title"><div><p class="eyebrow">ENERGY & ASSETS</p><h2>Powering more possibilities.</h2></div></div>
+<div class="asset-cards">
+  <article><div class="asset-photo solar"></div><div class="asset-copy"><h3>Solar Panels</h3><p>Power Your Home and Reduce Your Electricity Bill</p></div></article>
+  <article><div class="asset-photo power"></div><div class="asset-copy"><h3>Powerwall</h3><p>Keep Your Lights On During Outages</p></div></article>
+  <article><div class="asset-photo megapack"></div><div class="asset-copy"><h3>Megapack</h3><p>Massive Batteries for Massive Energy Support</p><button class="blue">Learn More</button></div></article>
+</div></section>
+
+<section class="section market-section" id="markets"><div class="section-title"><div><p class="eyebrow">ASSET MARKET</p><h2>Stocks & investment assets.</h2></div><button class="blue" id="marketLogin">Open dashboard</button></div>
+<div class="ticker-grid" id="tickerGrid"></div>
+<div class="market-note">Market values shown here are educational project data. Account transactions and withdrawals are simulated and managed through the separate project admin portal.</div>
+</section>
+
+<section class="section leadership" id="leadership"><div class="section-title"><div><p class="eyebrow">FOUNDERS & LEADERSHIP</p><h2>The people behind the technology.</h2></div></div>
+<div class="leaders" id="leaders"></div></section>
+
+<section class="final-cta"><h2>Ready to get started?</h2><p>Create an account to access your asset dashboard.</p><button class="blue large" id="ctaRegister">Create account</button></section>
+</main>
+
+<footer><b>TESLA ASSET MARKETS</b><span>© 2026 Educational project interface</span></footer>
+
+<div class="modal" id="authModal"><div class="modal-card"><button class="x" id="authClose">×</button><div id="authBody"></div></div></div>
+<div class="modal" id="infoModal"><div class="modal-card"><button class="x" id="infoClose">×</button><div id="infoBody"></div></div></div>
+<script src="app.js"></script>
+</body></html>

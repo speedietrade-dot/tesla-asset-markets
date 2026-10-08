@@ -1,0 +1,21 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin — Tesla Asset Markets</title><link rel="stylesheet" href="styles.css"></head><body>
+<div id="login" class="login"><div class="login-card"><div class="brand">TESLA ASSET MARKETS</div><h1>Admin Portal</h1><p>Separate management area</p><form id="loginForm" onsubmit="adminLogin(event)"><input id="email" autocomplete="username" placeholder="Admin email"><input id="password" type="password" autocomplete="current-password" placeholder="Password"><button id="loginBtn" type="submit">Sign in</button></form><small>Management access for the educational project.</small></div></div>
+<div id="app" class="hidden"><header><b>ADMIN / ASSET CONTROL</b><button id="logout">Log out</button></header><main><section class="stats"><div><span>Customers</span><strong id="users">0</strong></div><div><span>Total managed balance</span><strong id="total">$0</strong></div><div><span>Pending withdrawals</span><strong id="pending">0</strong></div><div><span>Pending funding</span><strong id="funding">0</strong></div></section>
+<section class="panel"><h2>Customer Accounts</h2><div class="table"><table><thead><tr><th>Customer</th><th>Balance</th><th>Investment</th><th>Profit</th><th>Control</th></tr></thead><tbody id="customers"></tbody></table></div></section>
+<section class="panel"><h2>Withdrawal Requests</h2><div id="withdrawals"></div></section>
+<section class="panel"><h2>Funding Requests</h2><div id="deposits"></div></section></main></div>
+<script>
+function adminLogin(event){
+  if(event) event.preventDefault();
+  var e=document.getElementById('email').value.trim();
+  var p=document.getElementById('password').value;
+  if(e==='admin@tesla.school' && p==='Admin123!'){
+    try{sessionStorage.setItem('tm_admin','1');}catch(err){}
+    document.getElementById('login').classList.add('hidden');
+    document.getElementById('app').classList.remove('hidden');
+    if(window.renderAdmin) window.renderAdmin();
+  }else{
+    alert('Incorrect admin credentials.');
+  }
+}
+</script><div class="modal" id="modal"><div class="modal-card"><button id="close">×</button><div id="body"></div></div></div><script src="app.js"></script></body></html>
