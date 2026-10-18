@@ -4,7 +4,7 @@
   "description": "This is a school-project interface. Account balances, asset purchases, profits, deposits and withdrawals are simulated locally for demonstration. No real money, brokerage account, securities settlement, or payment processing is connected.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --check server.js && node --check customer/app.js && node --check customer/dashboard.js && node --check admin/admin.js",
     "start": "node server.js"
   },
   "repository": {
