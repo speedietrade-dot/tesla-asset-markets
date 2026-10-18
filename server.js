@@ -362,15 +362,10 @@ app.post("/api/customer/funding-request", requireAuth, async (req, res) =>
       });
     }
 
-    const reference = String(req.body.reference || '').trim();
-    if (!reference || reference.length > 180) {
-      return res.status(400).json({ error: "Enter a valid payment reference" });
-    }
-
     await pool.query(
-      `INSERT INTO transactions (user_id, type, amount, status, description, customer_reference)
-       VALUES ($1, 'funding', $2, 'pending', 'Funding request submitted', $3)`,
-      [req.user.id, amount, reference]
+      `INSERT INTO transactions (user_id, type, amount, status, description)
+       VALUES ($1, 'funding', $2, 'pending', 'Funding request submitted')`,
+      [req.user.id, amount]
     );
 
     res.json({
@@ -457,7 +452,7 @@ app.post('/api/customer/asset-order', requireAuth, async (req, res) => {
     const description = `${kind === 'stock' ? `Stock ${symbol || name}` : `Vehicle ${name}`}${note ? ` — ${note}` : ''}`;
     const r = await pool.query(`INSERT INTO transactions(user_id,type,amount,status,description)
       VALUES($1,$2,$3,'pending',$4) RETURNING id,type,amount,status,description,created_at`, [req.user.id,type,amount,description]);
-    res.status(201).json({ success:true, transaction:r.rows[0], message:'Simulated order request submitted for admin review; no real trade or vehicle purchase was made.' });
+    res.status(201).json({ success:true, transaction:r.rows[0], message:'Order request submitted for administrator review. No trade or purchase was executed.' });
   } catch(e) { console.error(e); res.status(500).json({ error:'Unable to submit asset request' }); }
 });
 
@@ -750,22 +745,10 @@ app.patch(
       }
 
       const result = await pool.query(
-        `WITH updated AS (
-           UPDATE transactions
-           SET status = $1
-           WHERE id = $2 AND status = 'pending'
-           RETURNING *
-         ),
-         credited AS (
-           UPDATE users
-           SET balance = COALESCE(balance, 0) + updated.amount
-           FROM updated
-           WHERE $1 = 'approved'
-             AND updated.type = 'funding'
-             AND users.id = updated.user_id
-           RETURNING users.id
-         )
-         SELECT updated.* FROM updated CROSS JOIN (SELECT COUNT(*) FROM credited) AS credit_effect`,
+        `UPDATE transactions
+         SET status = $1
+         WHERE id = $2 AND status = 'pending'
+         RETURNING *`,
         [status, id]
       );
 
