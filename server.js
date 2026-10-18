@@ -452,7 +452,7 @@ app.post('/api/customer/asset-order', requireAuth, async (req, res) => {
     const description = `${kind === 'stock' ? `Stock ${symbol || name}` : `Vehicle ${name}`}${note ? ` — ${note}` : ''}`;
     const r = await pool.query(`INSERT INTO transactions(user_id,type,amount,status,description)
       VALUES($1,$2,$3,'pending',$4) RETURNING id,type,amount,status,description,created_at`, [req.user.id,type,amount,description]);
-    res.status(201).json({ success:true, transaction:r.rows[0], message:'Simulated order request submitted for admin review; no real trade or vehicle purchase was made.' });
+    res.status(201).json({ success:true, transaction:r.rows[0], message:'Order request submitted for administrator review. No trade or purchase was executed.' });
   } catch(e) { console.error(e); res.status(500).json({ error:'Unable to submit asset request' }); }
 });
 
