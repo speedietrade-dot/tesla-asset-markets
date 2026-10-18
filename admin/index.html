@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#10151f">
+  <title>Admin Console — Tesla Asset Markets</title>
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+  <section id="loginView" class="login-wrap">
+    <form id="loginForm" class="login-card">
+      <div class="brand-mark">T</div><p class="eyebrow">TESLA ASSET MARKETS</p>
+      <h1>Admin console</h1><p class="muted">Secure account and asset management</p>
+      <label>Admin email<input id="loginEmail" type="email" autocomplete="username" required placeholder="Admin email"></label>
+      <label>Password<input id="loginPassword" type="password" autocomplete="current-password" required placeholder="Password"></label>
+      <button class="btn primary full" type="submit">Sign in securely</button><p id="loginError" class="error" role="alert"></p>
+      <p class="footnote">Use the admin credentials configured in your server environment.</p>
+    </form>
+  </section>
+  <div id="adminApp" class="shell hidden">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark small">T</div><div><b>TESLA</b><span>ASSET MARKETS</span></div></div>
+      <div class="side-label">WORKSPACE</div>
+      <button class="nav active" data-target="overview"><span>▦</span> Overview</button>
+      <button class="nav" data-target="customers"><span>♙</span> Customers</button>
+      <button class="nav" data-target="plans"><span>◈</span> Investment plans</button>
+      <button class="nav" data-target="payments"><span>₿</span> Bitcoin payments</button>
+      <button class="nav" data-target="transactions"><span>↔</span> Transactions</button>
+      <div class="sidebar-bottom"><div class="secure-pill">● Admin session secured</div><button id="logoutBtn" class="nav logout"><span>↪</span> Log out</button></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div><p class="eyebrow">ADMINISTRATION</p><h1 id="pageTitle">Overview</h1></div><div class="top-right"><span class="live-dot"></span><span>System workspace</span><div class="avatar">A</div></div></header>
+      <div id="notice" class="notice hidden" role="status"></div>
+      <section id="overviewSection" class="view">
+        <div class="welcome"><div><p class="eyebrow light">CONTROL CENTER</p><h2>Good to see you.</h2><p>Manage customer accounts, investments and payment settings.</p></div><div class="welcome-symbol">↗</div></div>
+        <div class="stat-grid"><article class="stat-card"><div class="stat-icon navy">♙</div><span>Customers</span><strong id="statCustomers">—</strong><small>Registered accounts</small></article><article class="stat-card"><div class="stat-icon blue">$</div><span>Total customer balance</span><strong id="statBalance">$0.00</strong><small>Across active accounts</small></article><article class="stat-card"><div class="stat-icon green">↗</div><span>Total investment</span><strong id="statInvestment">$0.00</strong><small>Recorded investments</small></article><article class="stat-card"><div class="stat-icon amber">◷</div><span>Pending transactions</span><strong id="statPending">0</strong><small>Awaiting review</small></article></div>
+        <div class="two-col"><section class="panel"><div class="panel-head"><div><p class="eyebrow">ACCOUNT CONTROL</p><h3>Customer management</h3></div><button class="btn secondary" data-go="customers">View customers →</button></div><p class="muted">Edit balances, set single-use withdrawal tokens, add invested stocks, or delete an account while retaining eligible financial records.</p><div id="overviewRecent" class="mini-list"></div></section><section class="panel"><div class="panel-head"><div><p class="eyebrow">PAYMENT CONFIGURATION</p><h3>Bitcoin address</h3></div><span class="tag">Shared address</span></div><p id="overviewBitcoin" class="address-preview">Not configured</p><button class="btn primary" data-go="payments">Configure address</button></section></div>
+      </section>
+      <section id="customersSection" class="view hidden"><section class="panel"><div class="panel-head"><div><p class="eyebrow">CUSTOMER DIRECTORY</p><h3>Customer accounts</h3><p class="muted">Changes are saved to PostgreSQL.</p></div><input id="customerSearch" class="search" placeholder="Search name or email…"></div><div class="table-wrap"><table><thead><tr><th>Customer</th><th>Balance</th><th>Investment</th><th>Profit</th><th>Joined</th><th>Actions</th></tr></thead><tbody id="customerRows"><tr><td colspan="6" class="empty">Loading customers…</td></tr></tbody></table></div></section></section>
+      <section id="plansSection" class="view hidden"><section class="panel"><div class="panel-head"><div><p class="eyebrow">PLAN CATALOG</p><h3>Investment plans</h3><p class="muted">Change names, amounts, or availability for the customer dashboard.</p></div></div><div id="planRows" class="plan-grid"></div></section></section>
+      <section id="paymentsSection" class="view hidden"><section class="panel narrow"><div class="panel-head"><div><p class="eyebrow">PAYMENT SETTINGS</p><h3>Shared Bitcoin payment address</h3><p class="muted">One admin-configured BTC address is displayed for all investment plans.</p></div><div class="btc-icon">₿</div></div><form id="bitcoinForm" class="stack-form"><label>Bitcoin mainnet address<input id="bitcoinAddress" maxlength="150" placeholder="bc1… or 1… or 3…" autocomplete="off"></label><p class="hint">Double-check the address before saving. This setting only displays the address; it does not verify blockchain payments automatically.</p><button class="btn primary" type="submit">Save Bitcoin address</button></form></section></section>
+      <section id="transactionsSection" class="view hidden"><section class="panel"><div class="panel-head"><div><p class="eyebrow">ACTIVITY LEDGER</p><h3>Transactions</h3></div><button id="refreshTransactions" class="btn secondary">Refresh</button></div><div class="table-wrap"><table><thead><tr><th>Customer</th><th>Type</th><th>Details</th><th>Amount</th><th>Status</th><th>Date</th><th>Action</th></tr></thead><tbody id="transactionRows"><tr><td colspan="7" class="empty">Loading transactions…</td></tr></tbody></table></div></section></section>
+    </main>
+  </div>
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-card"><div class="modal-head"><h2 id="modalTitle">Edit</h2><button id="modalClose" class="icon-btn" aria-label="Close">×</button></div><div id="modalBody"></div></div></div>
+  <script src="/admin/admin.js"></script>
+</body></html>

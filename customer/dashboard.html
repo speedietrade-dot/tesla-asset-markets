@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#080b10"><title>Customer Dashboard — Tesla Asset Markets</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="index.html"><span class="tesla-mark">T</span><span><b>TESLA</b><small>ASSET MARKETS</small></span></a>
+    <nav class="nav-list" aria-label="Customer navigation">
+      <button class="nav active" data-section="dashboard"><span>▣</span> Dashboard</button>
+      <button class="nav" data-section="market"><span>▥</span> Market</button>
+      <button class="nav" data-section="stocks"><span>⌁</span> Stocks</button>
+      <button class="nav" data-section="cars"><span>▰</span> Cars</button>
+      <button class="nav" data-section="holdings"><span>▤</span> My Assets</button>
+      <button class="nav" id="sideDeposit"><span>⊕</span> Add Funds</button>
+      <button class="nav" id="sideWithdraw"><span>⇄</span> Withdraw</button>
+      <button class="nav" data-section="transactions"><span>▧</span> Transactions</button>
+      <button class="nav" data-section="plans"><span>◈</span> Investment Plans</button>
+      <button class="nav" data-section="profile"><span>♙</span> Profile</button>
+    </nav>
+    <div class="sidebar-promo"><div class="promo-car">TESLA</div><b>Invest in Tesla Assets & Vehicles</b><p>Explore the vehicle range and asset marketplace in this educational demo.</p><button data-section="cars">Explore Now</button></div>
+    <button class="nav logout" id="logout">↪ &nbsp; Log out</button>
+  </aside>
+  <div class="page">
+    <header class="topbar"><button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button><label class="search"><span>⌕</span><input id="globalSearch" placeholder="Search stocks, Tesla cars, assets…"></label><div class="top-actions"><button class="bell" id="activityButton" aria-label="Recent activity">♟<i></i></button><div class="user-chip"><div class="avatar" id="avatar">T</div><div><b id="userName">Customer</b><small id="userId">TESLA CUSTOMER</small></div><button id="profileMenu" aria-label="Profile menu">⌄</button></div></div></header>
+    <main>
+      <section class="view" id="view-dashboard">
+        <div class="welcome-row"><div><h1 id="welcome">Welcome back 👋</h1><p>Here’s your investment overview and opportunities</p></div><div class="verified"><span></span> Account Status <b>Active</b></div></div>
+        <div class="summary-grid">
+          <article class="summary-card balance-card"><div class="summary-icon">▣</div><div><span>Total Balance</span><strong id="balance">$0.00</strong><small>Account cash balance</small></div></article>
+          <article class="summary-card investment-card"><div class="summary-icon">↗</div><div><span>Total Investment</span><strong id="invested">$0.00</strong><small>Recorded holdings</small></div></article>
+          <article class="summary-card profit-card"><div class="summary-icon">▥</div><div><span>Total Profit</span><strong id="profit">$0.00</strong><small>Admin-recorded demo value</small></div></article>
+          <article class="summary-card available-card"><div class="summary-icon">▣</div><div><span>Available to Withdraw</span><strong id="available">$0.00</strong><small>Subject to request review</small></div></article>
+        </div>
+        <div class="dashboard-grid">
+          <section class="portfolio panel"><div class="panel-head"><div><h2>Portfolio Value</h2><div class="portfolio-value" id="portfolioValue">$0.00 <span>Demo portfolio</span></div></div><div class="range-tabs"><button class="selected">1D</button><button>1W</button><button>1M</button><button>3M</button><button>1Y</button><button>ALL</button></div></div><canvas id="portfolioChart" aria-label="Illustrative portfolio chart"></canvas><p class="chart-note">Illustrative chart for the academic project; not live trading data.</p></section>
+          <section class="quick panel"><h2>Quick Actions</h2><div class="quick-grid"><button class="quick-action add" id="addFunds"><span>＋</span><b>Add Funds</b><small>Submit funding request</small></button><button class="quick-action stocks-action" data-section="stocks"><span>⇅</span><b>Buy Stocks</b><small>Explore listed assets</small></button><button class="quick-action cars-action" data-section="cars"><span>▰</span><b>Buy Tesla Cars</b><small>Explore vehicle models</small></button><button class="quick-action withdraw-action" id="withdraw"><span>⌂</span><b>Withdraw</b><small>Request a withdrawal</small></button></div></section>
+          <section class="wallet panel"><div class="panel-head"><h2>Your Bitcoin Payment Address</h2><span class="btc-badge">₿</span></div><div class="wallet-address" id="walletAddress">Ask the admin to configure a Bitcoin address.</div><button class="copy-button" id="copyWallet">Copy address</button><div class="warning"><b>Important</b><p>Only send Bitcoin to a verified Bitcoin address. Payment requests remain pending until independently checked. Never send funds to an address you have not confirmed.</p></div></section>
+          <section class="recent panel"><div class="panel-head"><h2>Recent Activity</h2><button class="text-button" data-section="transactions">View All →</button></div><div id="recentActivity" class="activity-list"><p class="muted">Loading activity…</p></div></section>
+        </div>
+        <section class="section-block"><div class="section-heading"><div><h2>Popular Investment Assets</h2><p>Illustrative market quotes for the project</p></div><button class="text-button" data-section="stocks">View All →</button></div><div class="stock-grid" id="dashboardStocks"></div></section>
+        <section class="section-block"><div class="section-heading"><div><h2>Tesla Cars Marketplace</h2><p>Explore models and submit a simulated purchase request</p></div><button class="text-button" data-section="cars">All Tesla Cars →</button></div><div class="filter-row" id="dashboardCarFilters"></div><div class="car-grid compact" id="dashboardCars"></div></section>
+      </section>
+      <section class="view hidden" id="view-market"><div class="page-heading"><p class="eyebrow">MARKET OVERVIEW</p><h1>Market</h1><p>Educational quotes and market cards.</p></div><div class="stock-grid" id="marketStocks"></div></section>
+      <section class="view hidden" id="view-stocks"><div class="page-heading"><p class="eyebrow">ASSET MARKETPLACE</p><h1>Popular Stocks</h1><p>Stock cards are illustrative; orders are saved as pending demo requests.</p></div><div class="stock-grid" id="allStocks"></div></section>
+      <section class="view hidden" id="view-cars"><div class="page-heading"><p class="eyebrow">VEHICLE MARKETPLACE</p><h1>Tesla Cars</h1><p>Browse the models shown in your design reference.</p></div><div class="filter-row" id="carFilters"></div><div class="car-grid" id="allCars"></div></section>
+      <section class="view hidden" id="view-holdings"><div class="page-heading"><p class="eyebrow">PORTFOLIO</p><h1>My Assets</h1><p>Holdings recorded for your account by the admin.</p></div><section class="panel table-panel"><div class="table-scroll"><table><thead><tr><th>Asset</th><th>Units</th><th>Investment</th><th>Current value</th><th>Profit / loss</th></tr></thead><tbody id="holdingsRows"></tbody></table></div></section></section>
+      <section class="view hidden" id="view-plans"><div class="page-heading"><p class="eyebrow">INVESTMENT OPTIONS</p><h1>Investment Plans</h1><p>Select a plan to view the shared Bitcoin payment address. All payments remain pending until verified.</p></div><div class="plan-grid" id="customerPlans"></div></section>
+      <section class="view hidden" id="view-transactions"><div class="page-heading"><p class="eyebrow">ACCOUNT ACTIVITY</p><h1>Transactions</h1><p>Funding, investment-plan, withdrawal, and asset requests.</p></div><section class="panel table-panel"><div class="table-scroll"><table><thead><tr><th>Type</th><th>Details</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody id="transactionRows"></tbody></table></div></section></section>
+      <section class="view hidden" id="view-profile"><div class="page-heading"><p class="eyebrow">YOUR ACCOUNT</p><h1>Profile</h1></div><section class="panel profile-panel"><div class="profile-avatar" id="profileAvatar">T</div><h2 id="profileName">Customer</h2><p id="profileEmail">—</p><p class="muted">Customer details are managed by your account. Contact the administrator for account support.</p></section></section>
+    </main>
+    <footer>TESLA ASSET MARKETS · Educational project interface · No real brokerage execution or payment verification is connected.</footer>
+  </div>
+  <div class="modal" id="modal" aria-hidden="true"><div class="modal-card"><button class="modal-close" id="modalClose" aria-label="Close">×</button><div id="modalBody"></div></div></div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="dashboard.js"></script>
+</body></html>
